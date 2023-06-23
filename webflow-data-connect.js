@@ -1,11 +1,10 @@
-let table = 'research';
 let params = {
 limit: 250,
 }
 
 axios.get(nocodb + '/' + table, {
             headers: {
-                'xc-token': xs_token
+                'xc-token': xc_token
             },
             params: params
         }).then(function(response) {
