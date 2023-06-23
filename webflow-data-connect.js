@@ -2,9 +2,10 @@ $(document).ready(() => {
 
 	$('[nocodb-template]').each((i, el) => {
 
+		let $el = $(el);
+
 		let table = el.attr('nocodb-table');
 		let target = el.attr('nocodb-target');
-		let $el = el.clone(true, true);
 
 		let params = {
 			limit: 250,
