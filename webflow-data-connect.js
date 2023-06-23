@@ -27,7 +27,7 @@ let nocodb_query = (table, params) => {
 		params: params
 	}).then(function (response) {
 		
-		return response.data;
+		return response;
 
 		// const item_template = $('.components [nocodb-template=]').first().clone(true, true);
 		
