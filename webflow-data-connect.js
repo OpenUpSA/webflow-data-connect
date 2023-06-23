@@ -20,7 +20,7 @@ $(document).ready(() => {
 
 let nocodb_query = (table, params) => {
 
-	xios.get(nocodb + '/' + table, {
+	axios.get(nocodb + '/' + table, {
 		headers: {
 			'xc-token': xc_token
 		},
