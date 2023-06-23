@@ -4,8 +4,8 @@ $(document).ready(() => {
 
 		let $el = $(el);
 
-		let table = el.attr('nocodb-table');
-		let target = el.attr('nocodb-target');
+		let table = $el.attr('nocodb-table');
+		let target = $el.attr('nocodb-target');
 
 		let params = {
 			limit: 250,
