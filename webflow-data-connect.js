@@ -1,16 +1,12 @@
 function renderRecords(records) {
 
+	const $directoryItem = $('.directory_item').first().clone(true, true);
+
 	records.forEach(record => {
 
-		// duplicate $('.directory_item') for each record
-		let $directoryItem = $('.directory_item').clone();
-
-		// change the h2 text to the record name
-		$directoryItem.find('h2').text(record.fields.Title);
-
-		// append
-
-		$('.directory_list').append($directoryItem);
+		let recordItem = $directoryItem.clone();
+		recordItem.find('h2').text(record.fields.Title);
+		$('.directory_list').append(recordItem);
 
 
 
