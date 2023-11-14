@@ -5,9 +5,10 @@ function renderRecords(records) {
 	records.forEach(record => {
 
 		let recordItem = $directoryItem.clone();
+		recordItem.removeClass('hidden_item');
 		recordItem.find('h2').text(record.fields.Title);
 		recordItem.find('p').text(record.fields.Description);
-		recordItem.find('.research-year').text(record.fields.Year);
+		recordItem.find('.research-year').text(new Date(record.fields.Year).toLocaleString());
 		// recordItem.find('.research-type').text(record.fields.Year);
 		recordItem.find('.research-access').text(record.fields.Access);
 
