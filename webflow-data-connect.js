@@ -1,6 +1,25 @@
 $(document).ready(() => {
 
-	console.log('hello');
+	fetch(apitable, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + token
+		}
+		})
+		.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response;
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data)
+		})
+		.catch((error) => {
+			console.error(error);
+  	});
 
 })
 
