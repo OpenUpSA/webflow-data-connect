@@ -45,12 +45,16 @@ $(document).ready(() => {
 		.then((response) => response.json())
 		.then((data) => {
 
+			console.log(data);
+
 			records = data.records;
 			total = data.total;
 			pageNum = data.pageNum;
 			pageSize = data.pageSize;
 
-			renderRecords(records);
+			if(records.length > 0) {
+				renderRecords(records);
+			}
 
 		})
 		.catch((error) => {
