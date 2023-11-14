@@ -47,10 +47,10 @@ $(document).ready(() => {
 
 			console.log(data);
 
-			records = data.records;
-			total = data.total;
-			pageNum = data.pageNum;
-			pageSize = data.pageSize;
+			records = data.data.records;
+			total = data.data.total;
+			pageNum = data.data.pageNum;
+			pageSize = data.data.pageSize;
 
 			if(records.length > 0) {
 				renderRecords(records);
