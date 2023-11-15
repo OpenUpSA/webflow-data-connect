@@ -1,3 +1,38 @@
+function fetchCategories() {
+
+	fetch(aitable + categoriesTable, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + token
+		}
+	})
+	.then((response) => {
+		if (!response.ok) {
+			throw Error(response.statusText);
+		}
+		return response;
+	})
+	.then((response) => response.json())
+	.then((data) => {
+		console.log(data);
+	})
+	.catch((error) => {
+		console.error(error);
+	});
+
+}
+
+function fetchSubjects() {
+}
+
+function fetchCountries() {
+}
+
+function fetchTypes() {
+}
+
+
 function renderRecords(records) {
 
 	const $directoryItem = $('.directory_item').first().clone(true, true);
@@ -42,6 +77,12 @@ $(document).ready(() => {
 	setTimeout(() => {
 		$('.countries_select').SumoSelect();
 	}, 1000);
+
+	fetchCategories();
+	fetchSubjects();
+	fetchCountries();
+	fetchTypes();
+
 
 
 	const url = new URL(window.location.href);
