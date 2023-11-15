@@ -77,8 +77,15 @@ $(document).ready(() => {
 	document.getElementsByTagName('head')[0].appendChild(css);
 
 	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>');
+	$('.acc_categories').append('<select multiple="multiple" class="countries_select"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="countries_select"></select>');
+	$('.acc_types').append('<select multiple="multiple" class="countries_select"></select>');
+	
 	setTimeout(() => {
+		$('.categories_select').SumoSelect();
+		$('.subjects_select').SumoSelect();
 		$('.countries_select').SumoSelect();
+		$('.types_select').SumoSelect();
 	}, 1000);
 
 	fetchCategories();
