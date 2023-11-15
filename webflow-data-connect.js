@@ -15,11 +15,16 @@ function fetchCategories() {
 	})
 	.then((response) => response.json())
 	.then((data) => {
+		const $categoryCheckbox = $('.acc_categories .filter__checkbox').first().clone(true, true);
 		console.log(data);
 		data.data.records.forEach(record => {
-			$('.categories_select').append('<option value="' + record.recordId + '">' + record.fields.Category + '</option>');
+
+			let categoryCheckbox = $categoryCheckbox.clone();
+			categoryCheckbox.find('span').text(record.fields.Category);
+			categoryCheckbox.find('input').attr('value', record.recordId);
+			$('.acc_categories').append(categoryCheckbox);
+
 		})
-		$('.categories_select').SumoSelect();
 	})
 	.catch((error) => {
 		console.error(error);
@@ -78,15 +83,10 @@ $(document).ready(() => {
 	document.getElementsByTagName('head')[0].appendChild(css);
 
 	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>');
-	$('.acc_categories').append('<select multiple="multiple" class="categories_select"></select>');
-	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select"></select>');
-	$('.acc_types').append('<select multiple="multiple" class="types_select"></select>');
+	
 	
 	setTimeout(() => {
-		
-		$('.subjects_select').SumoSelect();
 		$('.countries_select').SumoSelect();
-		$('.types_select').SumoSelect();
 	}, 1000);
 
 	fetchCategories();
