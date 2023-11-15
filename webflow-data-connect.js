@@ -38,8 +38,10 @@ $(document).ready(() => {
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
 
-	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>')
-	$('.countries_select').SumoSelect();
+	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>');
+	setTimeout(() => {
+		$('.countries_select').SumoSelect();
+	}, 1000);
 
 
 	const url = new URL(window.location.href);
