@@ -30,11 +30,11 @@ $(document).ready(() => {
 	const params = new URLSearchParams(url.search);	
 
 	const searchTerm = params.get('search'); // Output: search
-	const dateRange = params.get('daterange'); // Output: 2022,2023
-	const categories = params.getAll('categories'); // Output: asdsa,dsqwewqw
-	const subjects = params.getAll('subjects'); // Output: asdsa,dsqwewqw
-	const countries = params.getAll('countries'); // Output: asdsa,dsqwewqw
-	const types = params.getAll('types'); // Output: asdsa,dsqwewqw
+	const dateRange = params.getAll('daterange'); // Output: 2022,2023
+	const categories = params.getAll('categories'); // Output: ['asdsa','dsqwewqw']
+	const subjects = params.getAll('subjects'); // Output: ['asdsa','dsqwewqw']
+	const countries = params.getAll('countries'); // Output: ['wdwd','qwwwwww']
+	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
 	console.log(searchTerm);
