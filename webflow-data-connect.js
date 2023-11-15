@@ -19,6 +19,7 @@ function fetchCategories() {
 		data.data.records.forEach(record => {
 			$('.categories_select').append('<option value="' + record.recordId + '">' + record.fields.Category + '</option>');
 		})
+		$('.categories_select').SumoSelect();
 	})
 	.catch((error) => {
 		console.error(error);
@@ -82,7 +83,7 @@ $(document).ready(() => {
 	$('.acc_types').append('<select multiple="multiple" class="types_select"></select>');
 	
 	setTimeout(() => {
-		$('.categories_select').SumoSelect();
+		
 		$('.subjects_select').SumoSelect();
 		$('.countries_select').SumoSelect();
 		$('.types_select').SumoSelect();
