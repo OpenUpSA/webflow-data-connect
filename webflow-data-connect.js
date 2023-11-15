@@ -79,9 +79,9 @@ $(document).ready(() => {
 	}, 1000);
 
 	fetchCategories();
-	fetchSubjects();
-	fetchCountries();
-	fetchTypes();
+	// fetchSubjects();
+	// fetchCountries();
+	// fetchTypes();
 
 
 
@@ -110,7 +110,7 @@ $(document).ready(() => {
 	let pageSize = 100;
 	let total = 0;
 
-	fetch(apitable, {
+	fetch(aitable + recordsTable, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
