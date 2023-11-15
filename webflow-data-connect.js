@@ -26,6 +26,22 @@ function renderRecords(records) {
 
 $(document).ready(() => {
 
+	// add script to page
+	const script = document.createElement('script');
+	script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/jquery.sumoselect.min.js';
+	script.type = 'text/javascript';
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+	// add css to page
+	const css = document.createElement('link');
+	css.href = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/sumoselect.min.css';
+	css.rel = 'stylesheet';
+	document.getElementsByTagName('head')[0].appendChild(css);
+
+	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>')
+	$('.countries_select').SumoSelect();
+
+
 	const url = new URL(window.location.href);
 	const params = new URLSearchParams(url.search);	
 
