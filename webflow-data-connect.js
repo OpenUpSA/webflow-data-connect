@@ -16,6 +16,9 @@ function fetchCategories() {
 	.then((response) => response.json())
 	.then((data) => {
 		console.log(data);
+		data.records.forEach(record => {
+			$('.categories_select').append('<option value="' + record.recordId + '">' + record.fields.Category + '</option>');
+		})
 	})
 	.catch((error) => {
 		console.error(error);
