@@ -77,9 +77,9 @@ $(document).ready(() => {
 	document.getElementsByTagName('head')[0].appendChild(css);
 
 	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>');
-	$('.acc_categories').append('<select multiple="multiple" class="countries_select"></select>');
-	$('.acc_subjects').append('<select multiple="multiple" class="countries_select"></select>');
-	$('.acc_types').append('<select multiple="multiple" class="countries_select"></select>');
+	$('.acc_categories').append('<select multiple="multiple" class="categories_select"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select"></select>');
+	$('.acc_types').append('<select multiple="multiple" class="types_select"></select>');
 	
 	setTimeout(() => {
 		$('.categories_select').SumoSelect();
