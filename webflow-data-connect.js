@@ -26,14 +26,24 @@ function renderRecords(records) {
 
 $(document).ready(() => {
 
-	const urlParams = new URLSearchParams(window.location.search);
+	const url = new URL(window.location.href);
+	const params = new URLSearchParams(url.search);	
 
-	console.log(urlParams);
+	const searchTerm = params.get('search'); // Output: search
+	const dateRange = params.get('daterange'); // Output: 2022,2023
+	const categories = params.getAll('categories'); // Output: asdsa,dsqwewqw
+	const subjects = params.getAll('subjects'); // Output: asdsa,dsqwewqw
+	const countries = params.getAll('countries'); // Output: asdsa,dsqwewqw
+	const types = params.getAll('types'); // Output: asdsa,dsqwewqw
+	const page = params.get('page'); // Output: 1
 
-
-
-
-
+	console.log(searchTerm);
+	console.log(dateRange);
+	console.log(categories);
+	console.log(subjects);
+	console.log(countries);
+	console.log(types);
+	console.log(page);
 
 
 	let records = [];
