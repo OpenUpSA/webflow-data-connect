@@ -26,6 +26,16 @@ function renderRecords(records) {
 
 $(document).ready(() => {
 
+	const urlParams = new URLSearchParams(window.location.search);
+
+	console.log(urlParams);
+
+
+
+
+
+
+
 	let records = [];
 	let pageNum = 1;
 	let pageSize = 100;
@@ -37,7 +47,7 @@ $(document).ready(() => {
 			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + token
 		}
-		})
+	})
 		.then((response) => {
 			if (!response.ok) {
 				throw Error(response.statusText);
@@ -54,15 +64,15 @@ $(document).ready(() => {
 			pageNum = data.data.pageNum;
 			pageSize = data.data.pageSize;
 
-			if(records.length > 0) {
+			if (records.length > 0) {
 				renderRecords(records);
 			}
 
 		})
 		.catch((error) => {
 			console.error(error);
-  		});
-	
+		});
+
 
 })
 
