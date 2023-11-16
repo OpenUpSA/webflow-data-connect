@@ -170,7 +170,7 @@ function renderRecords(records) {
 
 		let recordItem = $directoryItem.clone();
 		recordItem.removeClass('hidden_item');
-		recordItem.find('a.is--hover-red').href('https://aosf.webflow.io/research-view?id=' + record.recordId);
+		recordItem.find('a.is--hover-red').attr('href','https://aosf.webflow.io/research-view?id=' + record.recordId);
 		recordItem.find('h2').text(record.fields.Title);
 		recordItem.find('p').text(record.fields.Description);
 		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
