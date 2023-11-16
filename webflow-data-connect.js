@@ -211,6 +211,8 @@ function renderRecords(records) {
 		recordItem.find('.research-type').text(record.fields.Types_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
 
+		console.log(record.fields.Types_Lookup);
+		
 		if(record.fields.Types_Lookup[0] == 'Report') {
 			recordItem.find('.research-type-img-report').removeClass('hidden_item');
 		} else if(record.fields.Types_Lookup[0] == 'Book') {
