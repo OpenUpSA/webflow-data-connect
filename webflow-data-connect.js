@@ -89,13 +89,15 @@ function getFilters() {
 	    queryParams.push(`countries=${country}`);
 	});
 
-	console.log('queryParams2:', queryParams);
-	
-	let queryString = queryParams.length > 0 ? '?' + queryParams.join('&') : '';
+	let queryString = queryParams.length > 1 ? '?' + queryParams.join('&') : (queryParams.length === 1 ? '?' + queryParams[0] : '');
 
 	console.log(queryString);
 	
-	history.pushState(null, null, queryString);
+	if (queryString.length > 0) {
+	    history.pushState(null, null, queryString);
+	} else {
+	    history.pushState(null, null, window.location.pathname);
+	}
 
 	fetchRecords();
 		
