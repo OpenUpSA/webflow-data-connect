@@ -52,6 +52,8 @@ function fetchRelations() {
 
 function getFilters() {
 
+	console.log('getting filters');
+
 	let search = $('search').val() || '';
 	let categories = $('.categories_select').val() || [];
     	let subjects = $('.subjects_select').val() || [];
