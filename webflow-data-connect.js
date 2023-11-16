@@ -60,20 +60,29 @@ function getFilters() {
     	let types = $('.types_select').val() || [];
     	let countries = $('.countries_select').val() || [];
 
-	let countriesFilter = countries.length > 0 ? countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',') : '';
-	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
-	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
-	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
-	let searchFilter = (search != '' && search != null) ? `find(LOWER('${search}'), LOWER({Title})) > 0` : '';
+	let queryParams = [];
 
-	let filters = [categoriesFilter, subjectsFilter, typesFilter, countriesFilter].filter(Boolean);
-
-	console.log(filters);
+	if (search) {
+	    queryParams.push(`search=${search}`);
+	}
 	
-	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
-		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';	
+	categories.forEach(category => {
+	    queryParams.push(`categories=${category}`);
+	});
 	
-	console.log(queryString);
+	subjects.forEach(subject => {
+	    queryParams.push(`subjects=${subject}`);
+	});
+	
+	types.forEach(type => {
+	    queryParams.push(`types=${type}`);
+	});
+	
+	countries.forEach(country => {
+	    queryParams.push(`countries=${country}`);
+	});
+	
+	let queryString = queryParams.length > 0 ? '?' + queryParams.join('&') : '';
 	
 	history.pushState(null, null, queryString);
 
