@@ -20,8 +20,14 @@ fetch(aitable + recordsTable + queryString, {
 	.then((response) => response.json())
 	.then((data) => {
 
-		console.log(data);
+		let record = data.data.records[0];
 
+		$('h1').text(record.fields.Title);
+		$('.text-size-small').text(record.fields.citation);
+		$('.rl-text-style-medium').text(record.fields.description);
+		$('.rl-button-small').attr('href', record.fields.Link);
+		$('.research-access').text(record.fields.access);
+		// year, type, category, subject, country
 		
 		
 
