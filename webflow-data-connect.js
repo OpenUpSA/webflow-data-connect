@@ -86,7 +86,7 @@ function fetchRecords() {
 	// let query = '&fitlerByFormula=IF(OR(FIND("rec1DjFYk9Z8g", ARRAYJOIN({Countries_Link},",")) > 0, FIND("recqRtS0AwwtB", ARRAYJOIN({Countries_Link},",")) > 0))';
 
 	
-	let categoriesFilter = categories.map(category => `FIND(LOWER('${category}'), LOWER({Countries_Lookup})) > 0`).join(',');
+	let countriesFilter = countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',');
 	
 	let query = `?filterByFormula=
 	    OR(${categoriesFilter})
