@@ -208,7 +208,7 @@ function renderRecords(records) {
 		recordItem.find('h2').text(record.fields.Title);
 		recordItem.find('p').text(record.fields.Description);
 		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
-		recordItem.find('.research-type').text(record.fields.Type_Lookup);
+		recordItem.find('.research-type').text(record.fields.Types_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
 
 		if(record.fields.Types_Lookup[0] == 'Report') {
