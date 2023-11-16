@@ -1,34 +1,51 @@
-function fetchCategories() {
+function fetchRelations() {
 
-	fetch(aitable + categoriesTable, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Bearer ' + token
-		}
-	})
-	.then((response) => {
-		if (!response.ok) {
-			throw Error(response.statusText);
-		}
-		return response;
-	})
-	.then((response) => response.json())
-	.then((data) => {
-		const $categoryCheckbox = $('.acc_categories .filter__checkbox').first().clone(true, true);
-		console.log(data);
-		data.data.records.forEach(record => {
+	[categoriesTable, subjectsTable, countriesTable, typesTable].forEach(table => {
 
-			let categoryCheckbox = $categoryCheckbox.clone();
-			categoryCheckbox.find('span').text(record.fields.Category);
-			categoryCheckbox.find('input').attr('value', record.recordId);
-			$('.acc_categories').append(categoryCheckbox);
-
+		fetch(aitable + table, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
 		})
+		.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response;
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			const $checkbox = $('.acc_categories .filter__checkbox').first().clone(true, true);
+			data.data.records.forEach(record => {
+
+				let tableCol = table == categoriesTable ? record.fields.Category :
+					table == subjectsTable ? record.fields.Subject :
+					table == countriesTable ? record.fields.Country :
+					table == typesTable ? record.fields.Type;
+
+				let section = table == categoriesTable ? '.acc_categories' :
+					table == subjectsTable ? '.acc_subjects' :
+					table == countriesTable ? '.acc_countries' :
+					table == typesTable ? '.acc_types'; 
+				
+	
+				let sectionCheckbox = $checkbox.clone();
+				sectionCheckbox.find('span').text(tableCol);
+				sectionCheckbox.find('input').attr('value', record.recordId);
+				$(section).append(sectionCheckbox);
+	
+			})
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+
+
 	})
-	.catch((error) => {
-		console.error(error);
-	});
+
+	
 
 }
 
@@ -89,10 +106,7 @@ $(document).ready(() => {
 		$('.countries_select').SumoSelect();
 	}, 1000);
 
-	fetchCategories();
-	// fetchSubjects();
-	// fetchCountries();
-	// fetchTypes();
+	fetchRelations();
 
 
 
