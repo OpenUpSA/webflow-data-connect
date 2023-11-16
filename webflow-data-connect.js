@@ -65,7 +65,7 @@ function getFilters() {
 	let searchFilter = (search != '' && search != null) ? `find(LOWER('${search}'), LOWER({Title})) > 0` : '';
 
 	let filters = [categoriesFilter, subjectsFilter, typesFilter, countriesFilter].filter(Boolean);
-    	let queryString = '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
+    	let queryString = filters.length > 0 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : '';
 
 	history.pushState(null, null, '?' + queryString);
 
