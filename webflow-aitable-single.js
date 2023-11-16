@@ -23,10 +23,10 @@ fetch(aitable + recordsTable + queryString, {
 		let record = data.data.records[0];
 
 		$('h1').text(record.fields.Title);
-		$('.text-size-small').text(record.fields.citation);
-		$('.rl-text-style-medium').text(record.fields.description);
+		$('.text-size-small').text(record.fields.Citation);
+		$('.rl-text-style-medium').text(record.fields.Description);
 		$('.rl-button-small').attr('href', record.fields.Link);
-		$('.research-access').text(record.fields.access);
+		$('.research-access').text(record.fields.Access);
 		// year, type, category, subject, country
 		
 		
