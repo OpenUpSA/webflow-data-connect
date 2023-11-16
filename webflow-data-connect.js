@@ -95,10 +95,18 @@ $(document).ready(() => {
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
 
-	$('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple"></select>');
-	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple"></select>');
-	$('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple"></select>');
-	$('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple"></select>');
+	// const style = document.createElement('style');
+	// style.text('
+	// 	.select {
+	// 		width: 100%;
+	// 	}
+	// ');
+	// document.getElementsByTagName('head')[0].appendChild(style);
+
+	$('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple" style="width: 100%"></select>');
 
 	fetchRelations();
 
