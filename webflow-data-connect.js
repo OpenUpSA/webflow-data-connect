@@ -67,7 +67,7 @@ function getFilters() {
 
 	let queryParams = [];
 
-	console.log(queryParams);
+	console.log('queryParams: 'queryParams);
 
 	if (search) {
 	    queryParams.push(`search=${search}`);
@@ -88,8 +88,12 @@ function getFilters() {
 	countries.forEach(country => {
 	    queryParams.push(`countries=${country}`);
 	});
+
+	console.log('queryParams2: 'queryParams);
 	
 	let queryString = queryParams.length > 0 ? '?' + queryParams.join('&') : '';
+
+	console.log(queryString);
 	
 	history.pushState(null, null, queryString);
 
