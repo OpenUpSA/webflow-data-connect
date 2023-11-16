@@ -68,11 +68,13 @@ function getFilters() {
 
 	let filters = [categoriesFilter, subjectsFilter, typesFilter, countriesFilter].filter(Boolean);
 
+	console.log(filters);
 	
 	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
 		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';	
 	
-
+	console.log(queryString);
+	
 	history.pushState(null, null, queryString);
 
 	fetchRecords();
@@ -101,10 +103,11 @@ function fetchRecords() {
 	
 	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
+
+	console.log(filters);
+	
 	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
 		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';
-
-	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
 	console.log(queryString);
 
