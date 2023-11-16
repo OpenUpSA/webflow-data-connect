@@ -1,55 +1,56 @@
 function fetchRelations() {
 
 	[categoriesTable, subjectsTable, countriesTable, typesTable].forEach(table => {
-
-		fetch(aitable + table, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + token
-			}
-		})
-		.then((response) => {
-			if (!response.ok) {
-				throw Error(response.statusText);
-			}
-			return response;
-		})
-		.then((response) => response.json())
-		.then((data) => {
-
-			let tableCol = table == categoriesTable ? 'Category' :
-				table == subjectsTable ? 'Subject' :
-				table == countriesTable ? 'country' :
-				'Type';
-
-			let select = table == categoriesTable ? '.categories_select' :
-				table == subjectsTable ? '.subjects_select' :
-				table == countriesTable ? '.countries_select' :
-				'.types_select';
-
-			let placeholder = table == categoriesTable ? 'Categories' :
-				table == subjectsTable ? 'Subjects' :
-				table == countriesTable ? 'Countries' :
-				'Types';
-
-			data.data.records.forEach(record => {
-				$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
+		setTimeout(() => {
+			fetch(aitable + table, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + token
+				}
 			})
-
-			console.log(select);
-			
-			$(select).select2({
-   				placeholder: "Select " + placeholder,
-    				allowClear: true
+			.then((response) => {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				return response;
+			})
+			.then((response) => response.json())
+			.then((data) => {
+	
+				let tableCol = table == categoriesTable ? 'Category' :
+					table == subjectsTable ? 'Subject' :
+					table == countriesTable ? 'country' :
+					'Type';
+	
+				let select = table == categoriesTable ? '.categories_select' :
+					table == subjectsTable ? '.subjects_select' :
+					table == countriesTable ? '.countries_select' :
+					'.types_select';
+	
+				let placeholder = table == categoriesTable ? 'Categories' :
+					table == subjectsTable ? 'Subjects' :
+					table == countriesTable ? 'Countries' :
+					'Types';
+	
+				data.data.records.forEach(record => {
+					$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
+				})
+	
+				console.log(select);
+				
+				$(select).select2({
+	   				placeholder: "Select " + placeholder,
+	    				allowClear: true
+				});
+	
+				
+				
+			})
+			.catch((error) => {
+				console.error(error);
 			});
-
-			
-			
-		})
-		.catch((error) => {
-			console.error(error);
-		});
+		}, 1000);
 
 	})
 
