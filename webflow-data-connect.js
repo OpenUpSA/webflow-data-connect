@@ -95,8 +95,7 @@ function fetchRecords() {
 	
 	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
-	let queryString = '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
-	
+	let queryString = filters.length > 0 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : '';
 
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
