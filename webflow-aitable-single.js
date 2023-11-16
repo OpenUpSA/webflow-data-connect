@@ -87,7 +87,7 @@ fetch(aitable + recordsTable + queryString, {
 		
 
 		
-		// year, type, category, subject, country
+		
 		
 		
 
