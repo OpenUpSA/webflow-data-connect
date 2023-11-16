@@ -81,7 +81,9 @@ function fetchRecords() {
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
-	let query = '&filterByFormula=AND(find(LOWER("FRAUD"), LOWER({Title})) > 0,find("Free", {Access}) > 0)';
+	// let query = '&filterByFormula=AND(find(LOWER("FRAUD"), LOWER({Title})) > 0,find("Free", {Access}) > 0)';
+
+	let query = '&fitlerByFormula=IF(OR(FIND("rec1DjFYk9Z8g", ARRAYJOIN({Countries_Link},",")) > 0, FIND("recqRtS0AwwtB", ARRAYJOIN({Countries_Link},",")) > 0))';
 	
 
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
