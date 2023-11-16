@@ -182,7 +182,7 @@ function fetchRecords() {
 		// pageNum = data.data.pageNum;
 		// pageSize = data.data.pageSize;
 		
-		// renderRecords(records);
+		renderRecords(records);
 		
 		// $('.research-count-count').text(total);
 		
