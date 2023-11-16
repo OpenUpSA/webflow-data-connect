@@ -212,7 +212,7 @@ function renderRecords(records) {
 		recordItem.find('.research-access').text(record.fields.Access);
 
 		recordItem.find('.research-meta-2').html('');
-		if(record.fields.Countries_Lookup.length && record.fields.Countries_Lookup.length > 0) {
+		if(record.fields.Countries_Lookup != undefined && record.fields.Countries_Lookup.length > 0) {
 			record.fields.Countries_Lookup.forEach(country => {
 				let countryPill = $countryPill.clone();
 				countryPill.text(country);
