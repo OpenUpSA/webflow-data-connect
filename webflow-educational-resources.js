@@ -273,11 +273,11 @@ $(document).ready(() => {
 	css.href = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
-
-	fetchRelations();
 	
 	fetchRecords();
-
+	
+	fetchRelations();
+	
 	let timeoutId;
 	
 	$('.search-box').on('keyup', function () {
