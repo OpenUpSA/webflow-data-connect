@@ -212,11 +212,28 @@ function renderRecords(records) {
 		recordItem.find('.research-access').text(record.fields.Access);
 
 		recordItem.find('.research-meta-2').html('');
+		
 		if(record.fields.Countries_Lookup != undefined && record.fields.Countries_Lookup.length > 0) {
 			record.fields.Countries_Lookup.forEach(country => {
 				let countryPill = $countryPill.clone();
 				countryPill.text(country);
 				recordItem.find('.research-meta-2').append(countryPill);
+			})
+		}
+
+		if(record.fields.Categories_Lookup != undefined && record.fields.Categories_Lookup.length > 0) {
+			record.fields.Categories_Lookup.forEach(cat => {
+				let categoryPill = $categoryPill.clone();
+				categoryPill.text(cat);
+				recordItem.find('.research-meta-2').append(categoryPill);
+			})
+		}
+
+		if(record.fields.Subjects_Lookup != undefined && record.fields.Subjects_Lookup.length > 0) {
+			record.fields.Subjects_Lookup.forEach(sub => {
+				let subjectPill = $subjectPill.clone();
+				subjectPill.text(sub);
+				recordItem.find('.research-meta-2').append(subjectPill);
 			})
 		}
 		
