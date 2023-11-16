@@ -17,26 +17,22 @@ function fetchRelations() {
 		})
 		.then((response) => response.json())
 		.then((data) => {
-			const $checkbox = $('.acc_categories .filter__checkbox').first().clone(true, true);
+
+			let tableCol = table == categoriesTable ? record.fields.Category :
+				table == subjectsTable ? record.fields.Subject :
+				table == countriesTable ? record.fields.Country :
+				record.fields.Type;
+
+			let select = table == categoriesTable ? '.categories_select' :
+				table == subjectsTable ? '.subjects_select' :
+				table == countriesTable ? '.countries_select' :
+				'.types_select';
+
 			data.data.records.forEach(record => {
-
-				let tableCol = table == categoriesTable ? record.fields.Category :
-					table == subjectsTable ? record.fields.Subject :
-					table == countriesTable ? record.fields.Country :
-					record.fields.Type;
-
-				let section = table == categoriesTable ? '.acc_categories' :
-					table == subjectsTable ? '.acc_subjects' :
-					table == countriesTable ? '.acc_countries' :
-					'.acc_types'; 
-				
-	
-				let sectionCheckbox = $checkbox.clone();
-				sectionCheckbox.find('span').text(tableCol);
-				sectionCheckbox.find('input').attr('value', record.recordId);
-				$(section).append(sectionCheckbox);
-	
+				select.append('<option value="' + record.recordId + '">' + tableCol + '</option>);
 			})
+
+			$(select).select2();
 		})
 		.catch((error) => {
 			console.error(error);
@@ -89,22 +85,21 @@ $(document).ready(() => {
 
 	// add script to page
 	const script = document.createElement('script');
-	script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/jquery.sumoselect.min.js';
+	script.src = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
 	script.type = 'text/javascript';
 	document.getElementsByTagName('head')[0].appendChild(script);
 
 	// add css to page
 	const css = document.createElement('link');
-	css.href = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/sumoselect.min.css';
+	css.href = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
 
-	$('.acc_countries').append('<select multiple="multiple" class="countries_select"></select>');
-	
-	
-	setTimeout(() => {
-		$('.countries_select').SumoSelect();
-	}, 1000);
+	$('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple"></select>');
+	$('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple"></select>');
+	$('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple"></select>');
 
 	fetchRelations();
 
