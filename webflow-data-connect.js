@@ -170,6 +170,7 @@ function fetchRecords() {
 
 		
 		renderRecords(records);
+		$('.research-count-count').text(total);
 		
 
 	})
@@ -201,6 +202,8 @@ function renderRecords(records) {
 
 
 	});
+
+	
 
 
 
