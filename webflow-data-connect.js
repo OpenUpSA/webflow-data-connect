@@ -41,6 +41,12 @@ function fetchRelations() {
    				placeholder: "Select " + placeholder,
     				allowClear: true
 			});
+
+			$('.categories_select').on('change', function () { getFilters(); });
+			$('.subjects_select').on('change', function () { getFilters(); });
+			$('.types_select').on('change', function () { getFilters(); });
+			$('.countries_select').on('change', function () { getFilters(); });
+			
 		})
 		.catch((error) => {
 			console.error(error);
@@ -227,11 +233,6 @@ $(document).ready(() => {
 	fetchRelations();
 
 	fetchRecords();
-
-	$('.categories_select').on('change', function () { getFilters(); });
-	$('.subjects_select').on('change', function () { getFilters(); });
-	$('.types_select').on('change', function () { getFilters(); });
-	$('.countries_select').on('change', function () { getFilters(); });
 
 	let timeoutId;
 	
