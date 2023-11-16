@@ -67,6 +67,8 @@ function getFilters() {
 
 	let queryParams = [];
 
+	console.log(queryParams);
+
 	if (search) {
 	    queryParams.push(`search=${search}`);
 	}
