@@ -211,6 +211,16 @@ function renderRecords(records) {
 		recordItem.find('.research-type').text(record.fields.Type_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
 
+		if(record.fields.Type_Lookup[0] == 'Report') {
+			recordItem.find('.research-type-img-report').removeClass('hidden_item');
+		} else if(record.fields.Type_Lookup[0] == 'Book') {
+			recordItem.find('.research-type-img-book').removeClass('hidden_item');
+		} else if(record.fields.Type_Lookup[0] == 'Journal') {
+			recordItem.find('.research-type-img-journal').removeClass('hidden_item');
+		} else {
+			recordItem.find('.research-type-img-news').removeClass('hidden_item');
+		} 
+		
 		recordItem.find('.research-meta-2').html('');
 		
 		if(record.fields.Countries_Lookup != undefined && record.fields.Countries_Lookup.length > 0) {
