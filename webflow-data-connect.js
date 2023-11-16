@@ -194,6 +194,9 @@ function fetchRecords() {
 function renderRecords(records) {
 
 	const $directoryItem = $('.directory_item').first().clone(true, true);
+	const $subjectPill = $directoryItem.find('.research-subject');
+	const $categoryPill = $directoryItem.find('.research-category');
+	const $countryPill = $directoryItem.find('.research-country');
 
 	$('.directory_list_live').html('');
 
@@ -208,6 +211,13 @@ function renderRecords(records) {
 		recordItem.find('.research-type').text(record.fields.Type_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
 
+		recordItem.find('.research-meta-2').html('');
+		record.fields.Countries_Lookup.forEach(country => {
+			let countryPill = $countryPill.clone();
+			countryPill.text(country);
+			recordItem.find('.research-meta-2').append(countryPill);
+		})
+		
 		$('.directory_list_live').append(recordItem);
 
 
