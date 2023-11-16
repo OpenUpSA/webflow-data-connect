@@ -148,9 +148,9 @@ function fetchRecords() {
 		pageNum = data.data.pageNum;
 		pageSize = data.data.pageSize;
 
-		if (records.length > 0) {
-			renderRecords(records);
-		}
+		
+		renderRecords(records);
+		
 
 	})
 	.catch((error) => {
