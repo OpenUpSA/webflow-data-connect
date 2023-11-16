@@ -40,7 +40,7 @@ fetch(aitable + recordsTable + queryString, {
 			record.fields.Types_Lookup.forEach(type => {
 				let typePill = $typePill.clone();
 				typePill.text(type);
-				recordItem.find('.research-meta').append(typePill);
+				$('.research-meta').append(typePill);
 			})
 		}
 
@@ -52,7 +52,7 @@ fetch(aitable + recordsTable + queryString, {
 			record.fields.Subjects_Lookup.forEach(sub => {
 				let subjectPill = $subjectPill.clone();
 				subjectPill.text(sub);
-				recordItem.find('.research-meta-2').append(subjectPill);
+				$('.research-meta-2').append(subjectPill);
 			})
 		}
 
@@ -60,7 +60,7 @@ fetch(aitable + recordsTable + queryString, {
 			record.fields.Categories_Lookup.forEach(cat => {
 				let categoryPill = $categoryPill.clone();
 				categoryPill.text(cat);
-				recordItem.find('.research-meta-2').append(categoryPill);
+				$('.research-meta-2').append(categoryPill);
 			})
 		}
 
@@ -68,7 +68,7 @@ fetch(aitable + recordsTable + queryString, {
 			record.fields.Countries_Lookup.forEach(country => {
 				let countryPill = $countryPill.clone();
 				countryPill.text(country);
-				recordItem.find('.research-meta-2').append(countryPill);
+				$('.research-meta-2').append(countryPill);
 			})
 		}
 
