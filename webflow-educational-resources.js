@@ -174,10 +174,10 @@ function fetchRecords() {
 
 		console.log(data);
 
-		records = data.data.records;
-		total = data.data.total;
-		pageNum = data.data.pageNum;
-		pageSize = data.data.pageSize;
+		// records = data.data.records;
+		// total = data.data.total;
+		// pageNum = data.data.pageNum;
+		// pageSize = data.data.pageSize;
 		
 		// renderRecords(records);
 		
