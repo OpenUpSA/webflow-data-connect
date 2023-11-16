@@ -197,63 +197,56 @@ function fetchRecords() {
 
 function renderRecords(records) {
 
-	const $directoryItem = $('.directory_item').first().clone(true, true);
+	const $directoryItem = $('.educational-resource-item').first().clone(true, true);
 	const $subjectPill = $directoryItem.find('.research-subject');
 	const $categoryPill = $directoryItem.find('.research-category');
 	const $countryPill = $directoryItem.find('.research-country');
+	const $typePill = $directoryItem.find('.research-country');
 
-	$('.directory_list_live').html('');
+	$('.educational-resources-list').html('');
 
 	records.forEach(record => {
 
 		let recordItem = $directoryItem.clone();
 		recordItem.removeClass('hidden_item');
-		recordItem.find('a.is--hover-red').attr('href','https://aosf.webflow.io/research-view?id=' + record.recordId);
-		recordItem.find('h2').text(record.fields.Title);
-		recordItem.find('p').text(record.fields.Description);
-		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
-		recordItem.find('.research-type').text(record.fields.Types_Lookup);
-		recordItem.find('.research-access').text(record.fields.Access);
+		recordItem.find('a.is--hover-red').attr('href','https://aosf.webflow.io/educational-resource-view?id=' + record.recordId);
+		recordItem.find('h3').text(record.fields.Title);
+		recordItem.find('.rl-text-style-small').text(record.fields.Description);
+		// recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
+		// recordItem.find('.research-type').text(record.fields.Types_Lookup);
+		// recordItem.find('.research-access').text(record.fields.Access);
 
-		console.log(record.fields.Types_Lookup);
 		
-		if(record.fields.Types_Lookup[0] == 'Report') {
-			recordItem.find('.research-type-img-report').removeClass('hidden_item');
-		} else if(record.fields.Types_Lookup[0] == 'Book') {
-			recordItem.find('.research-type-img-book').removeClass('hidden_item');
-		} else if(record.fields.Types_Lookup[0] == 'Journal') {
-			recordItem.find('.research-type-img-journal').removeClass('hidden_item');
-		} else {
-			recordItem.find('.research-type-img-news').removeClass('hidden_item');
-		} 
+		
+		
 		
 		recordItem.find('.research-meta-2').html('');
 		
-		if(record.fields.Countries_Lookup != undefined && record.fields.Countries_Lookup.length > 0) {
-			record.fields.Countries_Lookup.forEach(country => {
-				let countryPill = $countryPill.clone();
-				countryPill.text(country);
-				recordItem.find('.research-meta-2').append(countryPill);
-			})
-		}
+		// if(record.fields.Countries_Lookup != undefined && record.fields.Countries_Lookup.length > 0) {
+		// 	record.fields.Countries_Lookup.forEach(country => {
+		// 		let countryPill = $countryPill.clone();
+		// 		countryPill.text(country);
+		// 		recordItem.find('.research-meta-2').append(countryPill);
+		// 	})
+		// }
 
-		if(record.fields.Categories_Lookup != undefined && record.fields.Categories_Lookup.length > 0) {
-			record.fields.Categories_Lookup.forEach(cat => {
-				let categoryPill = $categoryPill.clone();
-				categoryPill.text(cat);
-				recordItem.find('.research-meta-2').append(categoryPill);
-			})
-		}
+		// if(record.fields.Categories_Lookup != undefined && record.fields.Categories_Lookup.length > 0) {
+		// 	record.fields.Categories_Lookup.forEach(cat => {
+		// 		let categoryPill = $categoryPill.clone();
+		// 		categoryPill.text(cat);
+		// 		recordItem.find('.research-meta-2').append(categoryPill);
+		// 	})
+		// }
 
-		if(record.fields.Subjects_Lookup != undefined && record.fields.Subjects_Lookup.length > 0) {
-			record.fields.Subjects_Lookup.forEach(sub => {
-				let subjectPill = $subjectPill.clone();
-				subjectPill.text(sub);
-				recordItem.find('.research-meta-2').append(subjectPill);
-			})
-		}
+		// if(record.fields.Subjects_Lookup != undefined && record.fields.Subjects_Lookup.length > 0) {
+		// 	record.fields.Subjects_Lookup.forEach(sub => {
+		// 		let subjectPill = $subjectPill.clone();
+		// 		subjectPill.text(sub);
+		// 		recordItem.find('.research-meta-2').append(subjectPill);
+		// 	})
+		// }
 		
-		$('.directory_list_live').append(recordItem);
+		$('.educational-resources-list').append(recordItem);
 
 
 	});
