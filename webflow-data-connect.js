@@ -67,7 +67,7 @@ function getFilters() {
 
 	let queryParams = [];
 
-	console.log('queryParams: 'queryParams);
+	console.log('queryParams:', queryParams);
 
 	if (search) {
 	    queryParams.push(`search=${search}`);
@@ -89,7 +89,7 @@ function getFilters() {
 	    queryParams.push(`countries=${country}`);
 	});
 
-	console.log('queryParams2: 'queryParams);
+	console.log('queryParams2:', queryParams);
 	
 	let queryString = queryParams.length > 0 ? '?' + queryParams.join('&') : '';
 
