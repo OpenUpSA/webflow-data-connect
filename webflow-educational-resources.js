@@ -37,6 +37,8 @@ function fetchRelations() {
 				$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
 			})
 
+			console.log(select);
+			
 			$(select).select2({
    				placeholder: "Select " + placeholder,
     				allowClear: true
