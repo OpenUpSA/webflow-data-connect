@@ -212,11 +212,13 @@ function renderRecords(records) {
 		recordItem.find('.research-access').text(record.fields.Access);
 
 		recordItem.find('.research-meta-2').html('');
-		record.fields.Countries_Lookup.forEach(country => {
-			let countryPill = $countryPill.clone();
-			countryPill.text(country);
-			recordItem.find('.research-meta-2').append(countryPill);
-		})
+		if(record.fields.Countries_Lookup.length && record.fields.Countries_Lookup.length > 0) {
+			record.fields.Countries_Lookup.forEach(country => {
+				let countryPill = $countryPill.clone();
+				countryPill.text(country);
+				recordItem.find('.research-meta-2').append(countryPill);
+			})
+		}
 		
 		$('.directory_list_live').append(recordItem);
 
