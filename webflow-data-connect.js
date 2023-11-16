@@ -28,11 +28,19 @@ function fetchRelations() {
 				table == countriesTable ? '.countries_select' :
 				'.types_select';
 
+			let placeholder = table == categoriesTable ? 'Categories' :
+				table == subjectsTable ? 'Subjects' :
+				table == countriesTable ? 'Countries' :
+				'Types';
+
 			data.data.records.forEach(record => {
 				$(select).append('<option value="' + record.recordId + '">' + record.fields[tableCol] + '</option>');
 			})
 
-			$(select).select2();
+			$(select).select2({
+   				placeholder: "Select " + placeholder,
+    				allowClear: true
+			});
 		})
 		.catch((error) => {
 			console.error(error);
@@ -110,8 +118,6 @@ $(document).ready(() => {
 
 	fetchRelations();
 
-
-
 	const url = new URL(window.location.href);
 	const params = new URLSearchParams(url.search);	
 
@@ -123,14 +129,7 @@ $(document).ready(() => {
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
-	console.log(searchTerm);
-	console.log(dateRange);
-	console.log(categories);
-	console.log(subjects);
-	console.log(countries);
-	console.log(types);
-	console.log(page);
-
+	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
 	let records = [];
 	let pageNum = 1;
