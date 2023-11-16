@@ -164,7 +164,7 @@ function renderRecords(records) {
 
 	const $directoryItem = $('.directory_item').first().clone(true, true);
 
-	$('.directory_list').html('');
+	$('.directory_list_live').html('');
 
 	records.forEach(record => {
 
