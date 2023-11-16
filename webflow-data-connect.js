@@ -52,18 +52,24 @@ function fetchRelations() {
 
 function getFilters() {
 
-	$('.categories_select').on('select2:select', function (e) { 
-    		console.log($('.categories_select').select2('data'));
-	});
-	$('.subjects_select').on('select2:select', function (e) { 
-    		console.log($('.subjects_select').select2('data'));
-	});
-	$('.types_select').on('select2:select', function (e) { 
-    		console.log($('.types_select').select2('data'));
-	});
-	$('.countries_select').on('select2:select', function (e) { 
-    		console.log($('.countries_select').select2('data'));
-	});
+	let search = $('search').val() || '';
+	let categories = $('.categories_select').val() || [];
+    	let subjects = $('.subjects_select').val() || [];
+    	let types = $('.types_select').val() || [];
+    	let countries = $('.countries_select').val() || [];
+
+	let countriesFilter = countries.length > 0 ? countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',') : '';
+	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
+	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
+	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
+	let searchFilter = searchTerm != '' ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
+
+	let filters = [categoriesFilter, subjectsFilter, typesFilter, countriesFilter].filter(Boolean);
+    	let queryString = '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
+
+	history.pushState(null, null, '?' + queryString);
+
+	fetchRecords();
 		
 
 }
@@ -85,7 +91,7 @@ function fetchRecords() {
 	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
 	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
 	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
-	let searchFilter = searchTerm ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
+	let searchFilter = searchTerm != '' ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
 	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
