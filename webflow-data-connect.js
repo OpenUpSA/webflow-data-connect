@@ -209,10 +209,14 @@ $(document).ready(() => {
 	$('.subjects_select').on('change', function () { getFilters(); });
 	$('.types_select').on('change', function () { getFilters(); });
 	$('.countries_select').on('change', function () { getFilters(); });
-	$('.research-search-box').on('change', function () {
-		if($(this).val().length > 3) {
-			getFilters();
-		}
+
+	let timeoutId;
+	
+	$('.research-search-box').on('keyup', function () {
+		if ($(this).val().length > 3) {
+	        	clearTimeout(timeoutId);
+	        	timeoutId = setTimeout(getFilters, 1000);
+	    	}
 	});
 
 })
