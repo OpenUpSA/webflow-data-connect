@@ -34,7 +34,7 @@ function fetchRelations() {
 				'Types';
 
 			data.data.records.forEach(record => {
-				$(select).append('<option value="' + record.recordId + '">' + record.fields[tableCol] + '</option>');
+				$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
 			})
 
 			$(select).select2({
@@ -54,7 +54,7 @@ function getFilters() {
 
 	console.log('getting filters');
 
-	let search = $('search').val() || '';
+	let search = $('.research-search-box').val() || '';
 	let categories = $('.categories_select').val() || [];
     	let subjects = $('.subjects_select').val() || [];
     	let types = $('.types_select').val() || [];
@@ -192,10 +192,15 @@ $(document).ready(() => {
 
 	fetchRecords();
 
-	$('.categories_select').on('change', function () {
-		getFilters();
-	})
-
+	$('.categories_select').on('change', function () { getFilters(); });
+	$('.subjects_select').on('change', function () { getFilters(); });
+	$('.types_select').on('change', function () { getFilters(); });
+	$('.countries_select').on('change', function () { getFilters(); });
+	$('.research-search-box').on('change', function () {
+		if($(this).val().length > 3) {
+			getFilters();
+		}
+	});
 
 })
 
