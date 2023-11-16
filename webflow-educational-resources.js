@@ -1,12 +1,67 @@
+function fetchRelations() {
+
+	[categoriesTable, subjectsTable, countriesTable, typesTable].forEach(table => {
+
+		fetch(aitable + table, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response;
+		})
+		.then((response) => response.json())
+		.then((data) => {
+
+			let tableCol = table == categoriesTable ? 'Category' :
+				table == subjectsTable ? 'Subject' :
+				table == countriesTable ? 'country' :
+				'Type';
+
+			let select = table == categoriesTable ? '.categories_select' :
+				table == subjectsTable ? '.subjects_select' :
+				table == countriesTable ? '.countries_select' :
+				'.types_select';
+
+			let placeholder = table == categoriesTable ? 'Categories' :
+				table == subjectsTable ? 'Subjects' :
+				table == countriesTable ? 'Countries' :
+				'Types';
+
+			data.data.records.forEach(record => {
+				$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
+			})
+
+			$(select).select2({
+   				placeholder: "Select " + placeholder,
+    				allowClear: true
+			});
+
+			
+			
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+
+	})
+
+}
+
 function getFilters() {
 
 	console.log('getting filters');
 
 	let search = $('.research-search-box').val() || '';
 	let categories = $('.categories_select').val() || [];
-  let subjects = $('.subjects_select').val() || [];
-  let types = $('.types_select').val() || [];
-  let countries = $('.countries_select').val() || [];
+	let subjects = $('.subjects_select').val() || [];
+	let types = $('.types_select').val() || [];
+	let countries = $('.countries_select').val() || [];
 
 	console.log(countries);
 
@@ -219,6 +274,8 @@ $(document).ready(() => {
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
 
+	fetchRelations();
+	
 	fetchRecords();
 
 	let timeoutId;
