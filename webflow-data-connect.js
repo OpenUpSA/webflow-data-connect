@@ -91,7 +91,7 @@ function fetchRecords() {
 	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
 	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
 	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
-	let searchFilter = searchTerm != '' ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
+	let searchFilter = (searchTerm != '' && searchTerm != null) ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
 	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
