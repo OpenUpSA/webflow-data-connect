@@ -170,6 +170,7 @@ function renderRecords(records) {
 
 		let recordItem = $directoryItem.clone();
 		recordItem.removeClass('hidden_item');
+		recordItem.find('a.is--hover-red').href('https://aosf.webflow.io/research-view?id=' + record.recordId);
 		recordItem.find('h2').text(record.fields.Title);
 		recordItem.find('p').text(record.fields.Description);
 		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
@@ -199,11 +200,6 @@ $(document).ready(() => {
 	css.href = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
-
-	// $('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple" style="width: 100%"></select>');
-	// $('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple" style="width: 100%"></select>');
-	// $('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple" style="width: 100%"></select>');
-	// $('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple" style="width: 100%"></select>');
 
 	fetchRelations();
 
