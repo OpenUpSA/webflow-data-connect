@@ -162,7 +162,7 @@ function fetchRecords() {
 
 function renderRecords(records) {
 
-	const $directoryItem = $('.directory_item').first().clone(true, true);
+	
 
 	$('.directory_list').html('');
 
@@ -188,6 +188,8 @@ function renderRecords(records) {
 
 
 $(document).ready(() => {
+
+	const $directoryItem = $('.directory_item').first().clone(true, true);
 
 	// add script to page
 	const script = document.createElement('script');
