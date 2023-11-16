@@ -92,8 +92,7 @@ function fetchRecords() {
 	AND(
 	    OR(
 	        FIND('${searchTerm}', LOWER({Title})) > 0
-	    ),
-	    OR(${categoriesFilter}))
+	    )
 	)`;
 	
 
