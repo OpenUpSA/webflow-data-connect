@@ -95,6 +95,8 @@ function fetchRecords() {
 
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
+	console.log(query);
+
 	let records = [];
 	let pageNum = 1;
 	let pageSize = 100;
