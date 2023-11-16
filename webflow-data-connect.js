@@ -46,77 +46,29 @@ function fetchRelations() {
 			console.error(error);
 		});
 
-
 	})
 
-	
-
 }
 
-function fetchSubjects() {
-}
+function getFilters() {
 
-function fetchCountries() {
-}
-
-function fetchTypes() {
-}
-
-
-function renderRecords(records) {
-
-	const $directoryItem = $('.directory_item').first().clone(true, true);
-
-	records.forEach(record => {
-
-		let recordItem = $directoryItem.clone();
-		recordItem.removeClass('hidden_item');
-		recordItem.find('h2').text(record.fields.Title);
-		recordItem.find('p').text(record.fields.Description);
-		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
-		recordItem.find('.research-type').text(record.fields.Type_Lookup);
-		recordItem.find('.research-access').text(record.fields.Access);
-
-		$('.directory_list').append(recordItem);
-
-
-
-
+	$('.categories_select').on('select2:select', function (e) { 
+    		console.log($('.categories_select').select2('data'));
 	});
-
-
+	$('.subjects_select').on('select2:select', function (e) { 
+    		console.log($('.subjects_select').select2('data'));
+	});
+	$('.types_select').on('select2:select', function (e) { 
+    		console.log($('.types_select').select2('data'));
+	});
+	$('.countries_select').on('select2:select', function (e) { 
+    		console.log($('.countries_select').select2('data'));
+	});
+		
 
 }
 
-
-$(document).ready(() => {
-
-	// add script to page
-	const script = document.createElement('script');
-	script.src = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
-	script.type = 'text/javascript';
-	document.getElementsByTagName('head')[0].appendChild(script);
-
-	// add css to page
-	const css = document.createElement('link');
-	css.href = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
-	css.rel = 'stylesheet';
-	document.getElementsByTagName('head')[0].appendChild(css);
-
-	// const style = document.createElement('style');
-	// style.text('
-	// 	.select {
-	// 		width: 100%;
-	// 	}
-	// ');
-	// document.getElementsByTagName('head')[0].appendChild(style);
-
-	$('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple" style="width: 100%"></select>');
-	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple" style="width: 100%"></select>');
-	$('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple" style="width: 100%"></select>');
-	$('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple" style="width: 100%"></select>');
-
-	fetchRelations();
+function fetchRecords() {
 
 	const url = new URL(window.location.href);
 	const params = new URLSearchParams(url.search);	
@@ -143,30 +95,84 @@ $(document).ready(() => {
 			'Authorization': 'Bearer ' + token
 		}
 	})
-		.then((response) => {
-			if (!response.ok) {
-				throw Error(response.statusText);
-			}
-			return response;
-		})
-		.then((response) => response.json())
-		.then((data) => {
+	.then((response) => {
+		if (!response.ok) {
+			throw Error(response.statusText);
+		}
+		return response;
+	})
+	.then((response) => response.json())
+	.then((data) => {
 
-			console.log(data);
+		console.log(data);
 
-			records = data.data.records;
-			total = data.data.total;
-			pageNum = data.data.pageNum;
-			pageSize = data.data.pageSize;
+		records = data.data.records;
+		total = data.data.total;
+		pageNum = data.data.pageNum;
+		pageSize = data.data.pageSize;
 
-			if (records.length > 0) {
-				renderRecords(records);
-			}
+		if (records.length > 0) {
+			renderRecords(records);
+		}
 
-		})
-		.catch((error) => {
-			console.error(error);
-		});
+	})
+	.catch((error) => {
+		console.error(error);
+	});
+
+}
+
+
+function renderRecords(records) {
+
+	const $directoryItem = $('.directory_item').first().clone(true, true);
+
+	$('.directory_list').html('');
+
+	records.forEach(record => {
+
+		let recordItem = $directoryItem.clone();
+		recordItem.removeClass('hidden_item');
+		recordItem.find('h2').text(record.fields.Title);
+		recordItem.find('p').text(record.fields.Description);
+		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
+		recordItem.find('.research-type').text(record.fields.Type_Lookup);
+		recordItem.find('.research-access').text(record.fields.Access);
+
+		$('.directory_list').append(recordItem);
+
+
+	});
+
+
+
+}
+
+
+$(document).ready(() => {
+
+	// add script to page
+	const script = document.createElement('script');
+	script.src = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js';
+	script.type = 'text/javascript';
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+	// add css to page
+	const css = document.createElement('link');
+	css.href = 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css';
+	css.rel = 'stylesheet';
+	document.getElementsByTagName('head')[0].appendChild(css);
+
+	$('.acc_categories').append('<select multiple="multiple" class="categories_select" name="categories[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_subjects').append('<select multiple="multiple" class="subjects_select" name="subjects[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_types').append('<select multiple="multiple" class="types_select" name="types[]" multiple="multiple" style="width: 100%"></select>');
+	$('.acc_countries').append('<select multiple="multiple" class="countries_select" name="countries[]" multiple="multiple" style="width: 100%"></select>');
+
+	fetchRelations();
+
+	fetchRecords();
+
+	getFilters();
 
 
 })
