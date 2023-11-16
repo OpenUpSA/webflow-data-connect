@@ -81,6 +81,9 @@ function fetchRecords() {
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
+	let query = '&filterByFormula=AND(find(LOWER("FRAUD"), LOWER({Title})) > 0,find("Free", {Access}) > 0)';
+	
+
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
 	let records = [];
@@ -88,7 +91,7 @@ function fetchRecords() {
 	let pageSize = 100;
 	let total = 0;
 
-	fetch(aitable + recordsTable, {
+	fetch(aitable + recordsTable + query, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
