@@ -62,7 +62,7 @@ function getFilters() {
 	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
 	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
 	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
-	let searchFilter = searchTerm != '' ? `find(LOWER('${search}'), LOWER({Title})) > 0` : '';
+	let searchFilter = (search != '' && search != null) ? `find(LOWER('${search}'), LOWER({Title})) > 0` : '';
 
 	let filters = [categoriesFilter, subjectsFilter, typesFilter, countriesFilter].filter(Boolean);
     	let queryString = '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
