@@ -88,9 +88,7 @@ function fetchRecords() {
 	
 	let countriesFilter = countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',');
 	
-	let query = `?filterByFormula=
-	    OR(${countriesFilter})
-	)`;
+	let query = `?filterByFormula=OR(${countriesFilter})`;
 	
 
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
