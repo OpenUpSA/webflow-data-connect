@@ -47,10 +47,10 @@ function fetchRelations() {
 			$('.types_select').on('change', function () { getFilters(); });
 			$('.countries_select').on('change', function () { getFilters(); });
 
-			$('.categories_select').on('select2:select', function () { getFilters(); });
-			$('.subjects_select').on('select2:select', function () { getFilters(); });
-			$('.types_select').on('select2:select', function () { getFilters(); });
-			$('.countries_select').on('select2:select', function () { getFilters(); });
+			$('.categories_select').on('select2:unselect', function () { getFilters(); });
+			$('.subjects_select').on('select2:unselect', function () { getFilters(); });
+			$('.types_select').on('select2:unselect', function () { getFilters(); });
+			$('.countries_select').on('select2:unselect', function () { getFilters(); });
 			
 		})
 		.catch((error) => {
