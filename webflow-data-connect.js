@@ -88,8 +88,7 @@ function fetchRecords() {
 	
 	let categoriesFilter = categories.map(category => `FIND('${category}', ARRAYJOIN({Categories_Link}, ',')) > 0`).join(', ');
 	
-	let query = 'filterByFormula=
-	AND(
+	let query = 'filterByFormula=AND(
 	    OR(
 	        FIND('search', LOWER({Title})) > 0,
 	        /* Add other string-based searches similar to the line above */
