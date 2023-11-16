@@ -192,7 +192,7 @@ $(document).ready(() => {
 
 	fetchRecords();
 
-	$('.categories_select, .subjects_select, .types_select, .countries_select', '.research-search-box').on('change', function () {
+	$('.categories_select').on('change', function () {
 		getFilters();
 	})
 
