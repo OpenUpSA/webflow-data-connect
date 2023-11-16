@@ -1,5 +1,8 @@
+const url = new URL(window.location.href);
+const params = new URLSearchParams(url.search);	
+const record = params.get('id'); // Output: search
 
-let queryString = 'recordsIds=';
+let queryString = 'recordsIds=' + record;
 
 fetch(aitable + recordsTable + queryString, {
 		method: 'GET',
@@ -19,14 +22,7 @@ fetch(aitable + recordsTable + queryString, {
 
 		console.log(data);
 
-		records = data.data.records;
-		total = data.data.total;
-		pageNum = data.data.pageNum;
-		pageSize = data.data.pageSize;
 		
-		renderRecords(records);
-		
-		$('.research-count-count').text(total);
 		
 
 	})
