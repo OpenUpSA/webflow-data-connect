@@ -63,6 +63,8 @@ function getFilters() {
     	let types = $('.types_select').val() || [];
     	let countries = $('.countries_select').val() || [];
 
+	console.log(countries);
+
 	let queryParams = [];
 
 	if (search) {
