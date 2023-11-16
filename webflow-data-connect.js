@@ -81,26 +81,27 @@ function fetchRecords() {
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
-	// let query = '&filterByFormula=AND(find(LOWER("FRAUD"), LOWER({Title})) > 0,find("Free", {Access}) > 0)';
-
-	// let query = '&fitlerByFormula=IF(OR(FIND("rec1DjFYk9Z8g", ARRAYJOIN({Countries_Link},",")) > 0, FIND("recqRtS0AwwtB", ARRAYJOIN({Countries_Link},",")) > 0))';
-
+	let countriesFilter = countries.length > 0 ? countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',') : '';
+	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
+	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
+	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
+	let searchFilter = searchTerm ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
-	let countriesFilter = countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',');
 	
-	let query = `?filterByFormula=OR(${countriesFilter})`;
+	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
+	let queryString = 'filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
 	
 
 	console.log(searchTerm, dateRange, categories, subjects, countries, types, page);
 
-	console.log(query);
+	console.log(queryString);
 
 	let records = [];
 	let pageNum = 1;
 	let pageSize = 100;
 	let total = 0;
 
-	fetch(aitable + recordsTable + query, {
+	fetch(aitable + recordsTable + queryString, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
