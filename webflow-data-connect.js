@@ -18,10 +18,10 @@ function fetchRelations() {
 		.then((response) => response.json())
 		.then((data) => {
 
-			let tableCol = table == categoriesTable ? record.fields.Category :
-				table == subjectsTable ? record.fields.Subject :
-				table == countriesTable ? record.fields.Country :
-				record.fields.Type;
+			let tableCol = table == categoriesTable ? 'Category' :
+				table == subjectsTable ? 'Subject' :
+				table == countriesTable ? 'country' :
+				'Type';
 
 			let select = table == categoriesTable ? '.categories_select' :
 				table == subjectsTable ? '.subjects_select' :
@@ -29,7 +29,7 @@ function fetchRelations() {
 				'.types_select';
 
 			data.data.records.forEach(record => {
-				select.append('<option value="' + record.recordId + '">' + tableCol + '</option>');
+				select.append('<option value="' + record.recordId + '">' + record.fields[tableCol] + '</option>');
 			})
 
 			$(select).select2();
