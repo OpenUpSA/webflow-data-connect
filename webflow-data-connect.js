@@ -29,7 +29,7 @@ function fetchRelations() {
 				'.types_select';
 
 			data.data.records.forEach(record => {
-				select.append('<option value="' + record.recordId + '">' + tableCol + '</option>);
+				select.append('<option value="' + record.recordId + '">' + tableCol + '</option>');
 			})
 
 			$(select).select2();
