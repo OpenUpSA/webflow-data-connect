@@ -136,10 +136,7 @@ function fetchRecords() {
 	
 	let searchFilter = (searchTerm != '' && searchTerm != null) ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
-	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
-
-	console.log(filters);
 	
 	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
 		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';
@@ -173,9 +170,9 @@ function fetchRecords() {
 		total = data.data.total;
 		pageNum = data.data.pageNum;
 		pageSize = data.data.pageSize;
-
 		
 		renderRecords(records);
+		
 		$('.research-count-count').text(total);
 		
 
