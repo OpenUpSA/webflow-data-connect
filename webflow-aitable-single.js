@@ -33,7 +33,7 @@ fetch(aitable + recordsTable + queryString, {
 		$('.research-meta-2').html('');
 
 		let yearPill = $typePill.clone(true, true);
-		yearPill.text(record.fields.Year)
+		yearPill.text(new Date(record.fields.Year).getFullYear())
 		$('.research-meta').append(yearPill);
 
 		if(record.fields.Types_Lookup != undefined && record.fields.Types_Lookup.length > 0) {
