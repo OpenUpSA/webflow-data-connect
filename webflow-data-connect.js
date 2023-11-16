@@ -88,7 +88,7 @@ function fetchRecords() {
 	
 	let categoriesFilter = categories.map(category => `FIND('${category}', ARRAYJOIN({Categories_Link}, ',')) > 0`).join(',');
 	
-	let query = `filterByFormula=
+	let query = `?filterByFormula=
 	AND(
 	    OR(
 	        FIND('${searchTerm}', LOWER({Title})) > 0
