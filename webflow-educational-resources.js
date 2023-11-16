@@ -38,11 +38,13 @@ function fetchRelations() {
 				})
 	
 				console.log(select);
-				
-				$(select).select2({
-	   				placeholder: "Select " + placeholder,
-	    				allowClear: true
-				});
+
+				setTimeout(() => {
+					$(select).select2({
+		   				placeholder: "Select " + placeholder,
+		    				allowClear: true
+					});
+				}, 1000);
 	
 				
 				
