@@ -89,7 +89,7 @@ function fetchRecords() {
 	let countriesFilter = countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',');
 	
 	let query = `?filterByFormula=
-	    OR(${categoriesFilter})
+	    OR(${countriesFilter})
 	)`;
 	
 
