@@ -91,7 +91,7 @@ function fetchRecords() {
 	let query = `filterByFormula=
 	AND(
 	    OR(
-	        FIND('${search}', LOWER({Title})) > 0,
+	        FIND('${searchTerm}', LOWER({Title})) > 0,
 	        /* Add other string-based searches similar to the line above */
 	    ),
 	    OR(${categoriesFilter}))
