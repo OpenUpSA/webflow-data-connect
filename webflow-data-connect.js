@@ -42,10 +42,7 @@ function fetchRelations() {
     				allowClear: true
 			});
 
-			$('.categories_select').on('change', function () { getFilters(); });
-			$('.subjects_select').on('change', function () { getFilters(); });
-			$('.types_select').on('change', function () { getFilters(); });
-			$('.countries_select').on('change', function () { getFilters(); });
+			
 			
 		})
 		.catch((error) => {
@@ -239,6 +236,13 @@ $(document).ready(() => {
 	        	timeoutId = setTimeout(getFilters, 1000);
 	    	}
 	});
+
+	$('.categories_select').on('change', function () { getFilters(); });
+	$('.subjects_select').on('change', function () { getFilters(); });
+	$('.types_select').on('change', function () { getFilters(); });
+	$('.countries_select').on('change', function () { getFilters(); });
+
+	$('.select2-selection__choice__remove').on('click', function () { getFilters(); });
 
 })
 
