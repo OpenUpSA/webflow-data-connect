@@ -177,7 +177,7 @@ function renderRecords(records) {
 		recordItem.find('.research-type').text(record.fields.Type_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
 
-		$('.directory_list').append(recordItem);
+		$('.directory_list_live').append(recordItem);
 
 
 	});
