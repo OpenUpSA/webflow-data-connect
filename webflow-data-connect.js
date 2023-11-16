@@ -104,10 +104,30 @@ function fetchRecords() {
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
-	let countriesFilter = countries.length > 0 ? countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',') : '';
-	let categoriesFilter = categories.length > 0 ? categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',') : '';
-	let subjectsFilter = subjects.length > 0 ? subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',') : '';
-	let typesFilter = types.length > 0 ? types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',') : '';
+	let countriesFilter = countries.length > 0 ? 
+	    (countries.length > 1 ? 
+	        `OR(${countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',')})` :
+	        `FIND(LOWER('${countries[0]}'), LOWER({Countries_Lookup})) > 0`
+	    ) : '';
+	
+	let categoriesFilter = categories.length > 0 ? 
+	    (categories.length > 1 ? 
+	        `OR(${categories.map(category => `FIND(LOWER('${category}'), LOWER({Categories_Lookup})) > 0`).join(',')})` :
+	        `FIND(LOWER('${categories[0]}'), LOWER({Categories_Lookup})) > 0`
+	    ) : '';
+	
+	let subjectsFilter = subjects.length > 0 ? 
+	    (subjects.length > 1 ? 
+	        `OR(${subjects.map(subject => `FIND(LOWER('${subject}'), LOWER({Subjects_Lookup})) > 0`).join(',')})` :
+	        `FIND(LOWER('${subjects[0]}'), LOWER({Subjects_Lookup})) > 0`
+	    ) : '';
+	
+	let typesFilter = types.length > 0 ? 
+	    (types.length > 1 ? 
+	        `OR(${types.map(type => `FIND(LOWER('${type}'), LOWER({Types_Lookup})) > 0`).join(',')})` :
+	        `FIND(LOWER('${types[0]}'), LOWER({Types_Lookup})) > 0`
+	    ) : '';
+	
 	let searchFilter = (searchTerm != '' && searchTerm != null) ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
 	
