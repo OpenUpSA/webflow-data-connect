@@ -23,12 +23,12 @@ function fetchRelations() {
 				let tableCol = table == categoriesTable ? record.fields.Category :
 					table == subjectsTable ? record.fields.Subject :
 					table == countriesTable ? record.fields.Country :
-					table == typesTable ? record.fields.Type;
+					record.fields.Type;
 
 				let section = table == categoriesTable ? '.acc_categories' :
 					table == subjectsTable ? '.acc_subjects' :
 					table == countriesTable ? '.acc_countries' :
-					table == typesTable ? '.acc_types'; 
+					'.acc_types'; 
 				
 	
 				let sectionCheckbox = $checkbox.clone();
