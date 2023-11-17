@@ -141,7 +141,7 @@ function fetchRecords() {
 	
 	let searchFilter = (searchTerm != '' && searchTerm != null) ? `find(LOWER('${searchTerm}'), LOWER({Title})) > 0` : '';
 	
-	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
+	let filters = [searchFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
 	
 	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
 		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';
@@ -270,7 +270,6 @@ $(document).ready(() => {
 	$('.categories_select').on('change', function () { getFilters(); });
 	$('.subjects_select').on('change', function () { getFilters(); });
 	$('.types_select').on('change', function () { getFilters(); });
-	$('.countries_select').on('change', function () { getFilters(); });
 
 	$('.select2-selection__choice__remove').on('click', function () { getFilters(); });
 
