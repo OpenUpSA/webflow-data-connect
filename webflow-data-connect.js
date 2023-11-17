@@ -145,12 +145,31 @@ function fetchRecords() {
 	
 	let filters = [searchFilter, countriesFilter, categoriesFilter, subjectsFilter, typesFilter].filter(Boolean);
 	
-	let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
-		filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';
+	// let queryString = filters.length > 1 ? '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')') : 
+		// filters.length > 0 ? '?filterByFormula=' + encodeURIComponent(filters.join(', ')) : '';
+
+	let queryString = '';
+
+	// Constructing the filterByFormula part
+	if (filters.length > 1) {
+		queryString = '?filterByFormula=' + encodeURIComponent('AND(' + filters.join(', ') + ')');
+	} else if (filters.length > 0) {
+		queryString = '?filterByFormula=' + encodeURIComponent(filters.join(', '));
+	}
+	
+	// Adding pageNum if provided
+	const pageNum = page; // Replace this with the actual page number or variable
+	if (pageNum) {
+		queryString += queryString ? '&' : '?'; // Adding '&' or '?' based on whether queryString is empty
+		queryString += 'pageNum=' + encodeURIComponent(pageNum);
+	}
+
+	
 
 	console.log(queryString);
 
 	let records = [];
+	let pages = 1;
 	let pageNum = 1;
 	let pageSize = 100;
 	let total = 0;
@@ -171,14 +190,17 @@ function fetchRecords() {
 	.then((response) => response.json())
 	.then((data) => {
 
-		console.log(data);
+		
 
 		records = data.data.records;
 		total = data.data.total;
 		pageNum = data.data.pageNum;
 		pageSize = data.data.pageSize;
+		pages = Math.ceil(total / pageSize);
 		
 		renderRecords(records);
+
+		renderPagination(pages, pageNum);
 		
 		$('.research-count-count').text(total);
 		
@@ -258,6 +280,10 @@ function renderRecords(records) {
 
 
 
+}
+
+function renderPagination(pages, pageNum) {
+	
 }
 
 
