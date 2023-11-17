@@ -37,7 +37,7 @@ function fetchRelations() {
 					$(select).append('<option value="' + record.fields[tableCol] + '">' + record.fields[tableCol] + '</option>');
 				})
 	
-				console.log(select);
+				
 
 				setTimeout(() => {
 					$(select).select2({
@@ -66,9 +66,9 @@ function getFilters() {
 	let categories = $('.categories_select').val() || [];
 	let subjects = $('.subjects_select').val() || [];
 	let types = $('.types_select').val() || [];
-	let countries = $('.countries_select').val() || [];
+	
 
-	console.log(countries);
+	
 
 	let queryParams = [];
 
@@ -90,9 +90,7 @@ function getFilters() {
 	    queryParams.push(`types=${type}`);
 	});
 	
-	countries.forEach(country => {
-	    queryParams.push(`countries=${country}`);
-	});
+	
 
 	let queryString = queryParams.length > 1 ? '?' + queryParams.join('&') : (queryParams.length === 1 ? '?' + queryParams[0] : '');
 
@@ -117,15 +115,11 @@ function fetchRecords() {
 	const searchTerm = params.get('search'); // Output: search
 	const categories = params.getAll('categories'); // Output: ['asdsa','dsqwewqw']
 	const subjects = params.getAll('subjects'); // Output: ['asdsa','dsqwewqw']
-	const countries = params.getAll('countries'); // Output: ['wdwd','qwwwwww']
+	
 	const types = params.getAll('types'); // Output: ['asdsa','dsqwewqw']
 	const page = params.get('page'); // Output: 1
 
-	let countriesFilter = countries.length > 0 ? 
-	    (countries.length > 1 ? 
-	        `OR(${countries.map(country => `FIND(LOWER('${country}'), LOWER({Countries_Lookup})) > 0`).join(',')})` :
-	        `FIND(LOWER('${countries[0]}'), LOWER({Countries_Lookup})) > 0`
-	    ) : '';
+	
 	
 	let categoriesFilter = categories.length > 0 ? 
 	    (categories.length > 1 ? 
@@ -178,13 +172,11 @@ function fetchRecords() {
 		console.log(data);
 
 		records = data.data.records;
-		// total = data.data.total;
-		// pageNum = data.data.pageNum;
-		// pageSize = data.data.pageSize;
+		
 		
 		renderRecords(records);
 		
-		// $('.research-count-count').text(total);
+		
 		
 
 	})
