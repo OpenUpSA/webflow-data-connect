@@ -157,11 +157,11 @@ function fetchRecords() {
 		queryString = '?filterByFormula=' + encodeURIComponent(filters.join(', '));
 	}
 	
-	// Adding pageNum if provided
-	const pageNum = page; // Replace this with the actual page number or variable
-	if (pageNum) {
-		queryString += queryString ? '&' : '?'; // Adding '&' or '?' based on whether queryString is empty
-		queryString += 'pageNum=' + encodeURIComponent(pageNum);
+	
+	
+	if (page) {
+		queryString += queryString ? '&' : '?'; 
+		queryString += 'pageNum=' + encodeURIComponent(page);
 	}
 
 	
