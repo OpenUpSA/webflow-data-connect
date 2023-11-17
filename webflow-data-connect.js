@@ -157,12 +157,13 @@ function fetchRecords() {
 		queryString = '?filterByFormula=' + encodeURIComponent(filters.join(', '));
 	}
 	
-	
-	
 	if (page) {
 		queryString += queryString ? '&' : '?'; 
 		queryString += 'pageNum=' + encodeURIComponent(page);
 	}
+
+	queryString += queryString ? '&' : '?'; 
+	queryString += 'pageSize=20';
 
 	
 
