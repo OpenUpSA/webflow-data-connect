@@ -190,15 +190,14 @@ function fetchRecords() {
 function renderRecords(records) {
 
 	const $directoryItem = $('.educational-resource-item').first().clone(true, true);
-	const $subjectPill = $directoryItem.find('.research-subject').clone(true, true);
-	const $categoryPill = $directoryItem.find('.research-category').clone(true, true);
-	const $countryPill = $directoryItem.find('.research-country').clone(true, true);
-	const $typePill = $directoryItem.find('.research-country').clone(true, true);
+	const $subjectPill = $('.educational-resource-item .research-subject').first().clone(true, true);
+	const $categoryPill = $('.educational-resource-item .research-category').first().clone(true, true);
+	const $typePill = $('.educational-resource-item .research-type').first().clone(true, true);
 
 
 	$('.educational-resources-list').html('');
 
-	console.log($subjectPill, $categoryPill, $countryPill, $typePill);
+	
 
 	
 	records.forEach(record => {
