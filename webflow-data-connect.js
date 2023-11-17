@@ -42,6 +42,22 @@ function fetchRelations() {
     				allowClear: true
 			});
 
+			$('.acc_year').append(
+				
+				`<div class="multi-range-slider">
+					<input type="range" id="input-left" min="0" max="2023" value="2023">
+					<input type="range" id="input-right" min="0" max="2000" value="2000">
+			
+					<div class="slider">
+						<div class="track"></div>
+						<div class="range"></div>
+						<div class="thumb left"></div>
+						<div class="thumb right"></div>
+					</div>
+				</div>`
+
+			);
+
 			
 			
 		})
@@ -63,11 +79,7 @@ function getFilters() {
     	let types = $('.types_select').val() || [];
     	let countries = $('.countries_select').val() || [];
 
-	console.log(countries);
-
 	let queryParams = [];
-
-	console.log('queryParams:', queryParams);
 
 	if (search) {
 	    queryParams.push(`search=${search}`);
@@ -90,8 +102,6 @@ function getFilters() {
 	});
 
 	let queryString = queryParams.length > 1 ? '?' + queryParams.join('&') : (queryParams.length === 1 ? '?' + queryParams[0] : '');
-
-	console.log(queryString);
 	
 	if (queryString.length > 0) {
 	    history.pushState(null, null, queryString);
@@ -165,10 +175,6 @@ function fetchRecords() {
 	queryString += queryString ? '&' : '?'; 
 	queryString += 'pageSize=20';
 
-	
-
-	console.log(queryString);
-
 	let records = [];
 	let pages = 1;
 	let pageNum = 1;
@@ -233,8 +239,6 @@ function renderRecords(records) {
 		recordItem.find('.research-year').text(new Date(record.fields.Year).getFullYear());
 		recordItem.find('.research-type').text(record.fields.Types_Lookup);
 		recordItem.find('.research-access').text(record.fields.Access);
-
-		console.log(record.fields.Types_Lookup);
 		
 		if(record.fields.Types_Lookup[0] == 'Report') {
 			recordItem.find('.research-type-img-report').removeClass('hidden_item');
