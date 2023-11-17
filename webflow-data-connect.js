@@ -289,6 +289,8 @@ function renderRecords(records) {
 function renderPagination(pages, pageNum) {
 	let count = 1;
 
+	$('.directory-pagination').html('');
+
 	while (count <= pages) {
 		$('.directory-pagination').append('<div class="page-button">' + count + '</div>');
 		count++;
