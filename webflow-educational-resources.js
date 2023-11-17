@@ -198,10 +198,10 @@ function fetchRecords() {
 function renderRecords(records) {
 
 	const $directoryItem = $('.educational-resource-item').first().clone(true, true);
-	const $subjectPill = $directoryItem.find('.research-subject');
-	const $categoryPill = $directoryItem.find('.research-category');
-	const $countryPill = $directoryItem.find('.research-country');
-	const $typePill = $directoryItem.find('.research-country');
+	const $subjectPill = $directoryItem.find('.research-subject').clone(true, true);
+	const $categoryPill = $directoryItem.find('.research-category').clone(true, true);
+	const $countryPill = $directoryItem.find('.research-country').clone(true, true);
+	const $typePill = $directoryItem.find('.research-country').clone(true, true);
 
 	$('.educational-resources-list').html('');
 
@@ -214,14 +214,7 @@ function renderRecords(records) {
 		recordItem.find('.rl-text-style-small').text(record.fields.Description);
 		recordItem.find('.research-type').text(record.fields.Types_Lookup);
 		
-
-		
-		
-		
-		
 		recordItem.find('.item-meta').html('');
-		
-		
 
 		if(record.fields.Categories_Lookup != undefined && record.fields.Categories_Lookup.length > 0) {
 			record.fields.Categories_Lookup.forEach(cat => {
