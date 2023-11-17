@@ -195,8 +195,12 @@ function renderRecords(records) {
 	const $countryPill = $directoryItem.find('.research-country').clone(true, true);
 	const $typePill = $directoryItem.find('.research-country').clone(true, true);
 
+
 	$('.educational-resources-list').html('');
 
+	console.log($subjectPill, $categoryPill, $countryPill, $typePill);
+
+	
 	records.forEach(record => {
 
 		let recordItem = $directoryItem.clone();
