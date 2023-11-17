@@ -53,8 +53,8 @@ function fetchRelations() {
 	$('.acc_year').append(
 				
 		`<div class="multi-range-slider">
-			<input type="range" id="input-left" min="0" max="2023" value="2023">
-			<input type="range" id="input-right" min="0" max="2000" value="2000">
+			<input type="range" id="input-left" min="2000" max="2023" value="2023">
+			<input type="range" id="input-right" min="2000" max="2023" value="2000">
 	
 			<div class="slider">
 				<div class="track"></div>
