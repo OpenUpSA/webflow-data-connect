@@ -207,14 +207,24 @@ function renderRecords(records) {
 		recordItem.find('a.is--hover-red').attr('href','https://aosf.webflow.io/educational-resource-view?id=' + record.recordId);
 		recordItem.find('h3').text(record.fields.Title);
 		recordItem.find('.rl-text-style-small').text(record.fields.Description);
-		recordItem.find('.research-type').text(record.fields.Types_Lookup);
-		
+
 		recordItem.find('.item-meta').html('');
+
+		if(record.fields.Types_Lookup != undefined && record.fields.Types_Lookup.length > 0) {
+			record.fields.Types_Lookup.forEach(type => {
+				let typePill = $typePill.clone();
+				typePill.text(type);
+				console.log(typePill);
+				recordItem.find('.item-meta').append(typePill);
+			})
+		}
+		
 
 		if(record.fields.Categories_Lookup != undefined && record.fields.Categories_Lookup.length > 0) {
 			record.fields.Categories_Lookup.forEach(cat => {
 				let categoryPill = $categoryPill.clone();
 				categoryPill.text(cat);
+				console.log(categoryPill);
 				recordItem.find('.item-meta').append(categoryPill);
 			})
 		}
@@ -223,6 +233,7 @@ function renderRecords(records) {
 			record.fields.Subjects_Lookup.forEach(sub => {
 				let subjectPill = $subjectPill.clone();
 				subjectPill.text(sub);
+				console.log(subjectPill);
 				recordItem.find('.item-meta').append(subjectPill);
 			})
 		}
