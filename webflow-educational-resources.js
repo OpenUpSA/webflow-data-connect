@@ -214,7 +214,7 @@ function renderRecords(records) {
 			record.fields.Types_Lookup.forEach(type => {
 				let typePill = $typePill.clone();
 				typePill.text(type);
-				console.log(typePill);
+				
 				recordItem.find('.item-meta').append(typePill);
 			})
 		}
@@ -224,7 +224,7 @@ function renderRecords(records) {
 			record.fields.Categories_Lookup.forEach(cat => {
 				let categoryPill = $categoryPill.clone();
 				categoryPill.text(cat);
-				console.log(categoryPill);
+				
 				recordItem.find('.item-meta').append(categoryPill);
 			})
 		}
@@ -233,7 +233,7 @@ function renderRecords(records) {
 			record.fields.Subjects_Lookup.forEach(sub => {
 				let subjectPill = $subjectPill.clone();
 				subjectPill.text(sub);
-				console.log(subjectPill);
+				
 				recordItem.find('.item-meta').append(subjectPill);
 			})
 		}
