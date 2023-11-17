@@ -284,7 +284,12 @@ function renderRecords(records) {
 }
 
 function renderPagination(pages, pageNum) {
-	
+	let count = 1;
+
+	while (count <= page) {
+		$('.directory-apgination').append('<div class="page">' + count + '</div>')';
+		count++;
+	}
 }
 
 
